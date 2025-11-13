@@ -1,0 +1,26 @@
+{
+  "name": "sdet-portfolio",
+  "version": "1.0.0",
+  "description": "Professional SDET Portfolio Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server . -p 5500 -o",
+    "serve": "http-server . -p 5500",
+    "dev": "http-server . -p 5500 -o -c-1",
+    "watch": "http-server . -p 5500 -o -c-1 --watch",
+    "server": "http-server . -p 5500 -o -c-1",
+    "start:python": "python -m http.server 5500",
+    "stop": "echo Please stop the server manually with Ctrl+C"
+  },
+  "keywords": [
+    "portfolio",
+    "sdet",
+    "qa",
+    "test-automation"
+  ],
+  "author": "Tushar Sharma",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
