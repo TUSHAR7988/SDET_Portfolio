@@ -121,7 +121,6 @@ tushar/
 ├── START-HERE-WITH-RELOAD.bat      # One-click server with auto-reload
 ├── start-server.bat                # Standard batch file
 ├── stop-server.bat                 # Stop server script
-├── start-server.ps1                # PowerShell script
 │
 ├── server-with-reload.py           # Python server with auto-reload
 ├── requirements.txt                # Python dependencies
