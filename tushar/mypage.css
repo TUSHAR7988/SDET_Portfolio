@@ -496,6 +496,12 @@ nav.scroll-up {
   transform: translateY(-2px);
 }
 
+/* Global section anchor offset to prevent navbar overlap */
+section {
+  scroll-margin-top: 80px; /* approximate navbar height */
+  padding-top: 20px; /* additional breathing room */
+}
+
 /* About Section */
 .about {
   width: 100%;

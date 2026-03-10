@@ -324,13 +324,19 @@ document.querySelectorAll('.skill-tag').forEach(tag => {
 });
 
 // ==================== Parallax Effect for Hero Section ====================
-window.addEventListener('scroll', () => {
-  const scrolled = window.pageYOffset;
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-  }
-});
+// Parallax transform was causing the hero section to overlap subsequent
+// content when the user scrolled. Removing the transformation keeps the
+// layout flow intact and prevents text from stacking on top of each other.
+// (If a parallax effect is still desired, it should be applied to a
+// background element with its own z-index, not the entire .hero container.)
+
+// window.addEventListener('scroll', () => {
+//   const scrolled = window.pageYOffset;
+//   const hero = document.querySelector('.hero');
+//   if (hero) {
+//     hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+//   }
+//});
 
 // ==================== Loading Animation ====================
 window.addEventListener('load', () => {
