@@ -1,369 +1,379 @@
+/* ============================================================
+   SDET PORTFOLIO — Enhanced JavaScript v2.0
+   Features: 3D floating particles, custom cursor, smooth reveal,
+             typewriter with delete, counter animation, skill bars
+   ============================================================ */
 
-function typeWriter(element, text, speed = 100) {
-  let i = 0;
-  element.textContent = '';
-  
-  function type() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
+'use strict';
+
+// ─── Loader ───────────────────────────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    if (loader) loader.classList.add('hidden');
+    document.body.classList.add('loaded');
+  }, 900);
+});
+
+// ─── Custom Cursor ─────────────────────────────────────────
+(function initCursor() {
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  if (!dot || !ring) return;
+
+  let mx = -100, my = -100;
+  let rx = -100, ry = -100;
+  let raf;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function animate() {
+    dot.style.left  = mx + 'px';
+    dot.style.top   = my + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    raf = requestAnimationFrame(animate);
   }
-  
-  type();
-}
+  animate();
 
-
-window.addEventListener('DOMContentLoaded', () => {
-  const typewriterElement = document.getElementById('typewriter');
-  const roles = [
-    'QA Engineer',
-    'Test Automation Specialist',
-    'SDET Professional',
-    'Mobile Testing Expert'
-  ];
-  let currentRole = 0;
-  
-  function showNextRole() {
-    typeWriter(typewriterElement, roles[currentRole], 80);
-    currentRole = (currentRole + 1) % roles.length;
-  }
-  
-  showNextRole();
-  setInterval(showNextRole, 3000);
-});
-
-
-function animateCounter(element, target, duration = 2000) {
-  let start = 0;
-  const increment = target / (duration / 16);
-  
-  function updateCounter() {
-    start += increment;
-    if (start < target) {
-      element.textContent = Math.floor(start);
-      requestAnimationFrame(updateCounter);
-    } else {
-      element.textContent = target;
-    }
-  }
-  
-  updateCounter();
-}
-
-// Intersection Observer for counter animation
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const counter = entry.target;
-      const target = parseInt(counter.getAttribute('data-target'));
-      if (counter.textContent === '0') {
-        animateCounter(counter, target);
-      }
-      counterObserver.unobserve(counter);
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.stat-number').forEach(counter => {
-  counterObserver.observe(counter);
-});
-
-// ==================== Scroll Animations ====================
-const fadeInObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      fadeInObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-// Apply fade-in animation to elements with data-aos attribute
-document.querySelectorAll('[data-aos]').forEach(element => {
-  element.style.opacity = '0';
-  element.style.transform = 'translateY(30px)';
-  element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  fadeInObserver.observe(element);
-});
-
-// ==================== Skill Progress Bars ====================
-const skillBarsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const skillFill = entry.target;
-      const width = skillFill.getAttribute('data-width');
-      setTimeout(() => {
-        skillFill.style.width = width + '%';
-      }, 200);
-      skillBarsObserver.unobserve(skillFill);
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.skill-fill').forEach(bar => {
-  bar.style.width = '0%';
-  skillBarsObserver.observe(bar);
-});
-
-// ==================== Smooth Scrolling ====================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      const navHeight = document.querySelector('nav').offsetHeight;
-      const targetPosition = target.offsetTop - navHeight;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-      
-      // Close mobile menu if open
-      const navMenu = document.getElementById('navMenu');
-      const navToggle = document.getElementById('navToggle');
-      navMenu.classList.remove('active');
-      navToggle.classList.remove('active');
-    }
-  });
-});
-
-// ==================== Active Navigation Highlighting ====================
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav ul li a');
-  const scrollPosition = window.pageYOffset + 150;
-
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    const sectionId = section.getAttribute('id');
-
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${sectionId}`) {
-          link.classList.add('active');
-        }
-      });
-    }
-  });
-});
-
-// ==================== Navbar Scroll Effect ====================
-let lastScroll = 0;
-const navbar = document.getElementById('navbar');
-
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  
-  if (currentScroll <= 0) {
-    navbar.classList.remove('scroll-up');
-    return;
-  }
-  
-  if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
-    navbar.classList.remove('scroll-up');
-    navbar.classList.add('scroll-down');
-  } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
-    navbar.classList.remove('scroll-down');
-    navbar.classList.add('scroll-up');
-  }
-  
-  lastScroll = currentScroll;
-  
-  // Add shadow on scroll
-  if (currentScroll > 50) {
-    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-  } else {
-    navbar.style.boxShadow = 'none';
-  }
-});
-
-// ==================== Mobile Menu Toggle ====================
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-
-if (navToggle && navMenu) {
-  navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-  });
-}
-
-// ==================== Scroll to Top Button ====================
-const scrollTopBtn = document.getElementById('scrollTop');
-
-if (scrollTopBtn) {
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      scrollTopBtn.style.opacity = '1';
-      scrollTopBtn.style.visibility = 'visible';
-      scrollTopBtn.classList.add('visible');
-    } else {
-      scrollTopBtn.style.opacity = '0';
-      scrollTopBtn.style.visibility = 'hidden';
-      scrollTopBtn.classList.remove('visible');
-    }
+  // Hover effect on interactive elements
+  const hoverEls = 'a, button, .skill-card, .project-card, .contact-card, .stat-card, .btn, .sc-tags span, .nav-menu li a';
+  document.querySelectorAll(hoverEls).forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
   });
 
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  document.addEventListener('mouseleave', () => {
+    dot.style.opacity = '0';
+    ring.style.opacity = '0';
   });
-}
+  document.addEventListener('mouseenter', () => {
+    dot.style.opacity = '1';
+    ring.style.opacity = '1';
+  });
+})();
 
+// ─── 3D Background Canvas ──────────────────────────────────
+(function initBgCanvas() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
 
-// ==================== Particle Background Animation ====================
-const canvas = document.getElementById('particles-canvas');
-if (canvas) {
   const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
+  let W, H, animId;
+  let mouse = { x: -1000, y: -1000 };
+  const PARTICLE_COUNT = 80;
   const particles = [];
-  const particleCount = 50;
 
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 3 + 1;
-      this.speedX = Math.random() * 1 - 0.5;
-      this.speedY = Math.random() * 1 - 0.5;
-      this.opacity = Math.random() * 0.5 + 0.2;
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  document.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  class Dot {
+    constructor() { this.reset(true); }
+
+    reset(init) {
+      this.x  = Math.random() * W;
+      this.y  = init ? Math.random() * H : -10;
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = Math.random() * 0.35 + 0.1;
+      this.r  = Math.random() * 1.8 + 0.4;
+      this.alpha = Math.random() * 0.45 + 0.1;
+      this.pulse = Math.random() * Math.PI * 2;
+      // Randomly assign colour: cyan or purple
+      this.cyan = Math.random() > 0.35;
     }
 
     update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
+      this.pulse += 0.012;
+      this.x += this.vx;
+      this.y += this.vy;
 
-      if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-      if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+      // Mouse repulsion (subtle)
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 140) {
+        const force = (140 - dist) / 140 * 0.4;
+        this.vx += (dx / dist) * force;
+        this.vy += (dy / dist) * force;
+      }
+
+      // Damping
+      this.vx *= 0.98;
+      this.vy *= 0.98;
+
+      if (this.y > H + 10 || this.x < -20 || this.x > W + 20) this.reset(false);
     }
 
     draw() {
-      ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
+      const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
+      const color = this.cyan
+        ? `rgba(0, 229, 255, ${a})`
+        : `rgba(124, 58, 237, ${a * 0.7})`;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = color;
       ctx.fill();
     }
   }
 
-  function initParticles() {
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-  }
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Dot());
 
-  function connectParticles() {
+  function connectLines() {
+    const MAX_DIST = 110;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 150) {
-          ctx.strokeStyle = `rgba(37, 99, 235, ${0.2 * (1 - distance / 150)})`;
-          ctx.lineWidth = 1;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < MAX_DIST) {
+          const a = (1 - d / MAX_DIST) * 0.12;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${a})`;
+          ctx.lineWidth = 0.6;
           ctx.stroke();
         }
       }
     }
   }
 
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    particles.forEach(particle => {
-      particle.update();
-      particle.draw();
-    });
-    
-    connectParticles();
-    requestAnimationFrame(animateParticles);
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    connectLines();
+    animId = requestAnimationFrame(loop);
   }
 
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+  loop();
+})();
 
-  initParticles();
-  animateParticles();
-}
+// ─── Typewriter (with delete) ──────────────────────────────
+(function initTypewriter() {
+  const el = document.getElementById('typewriter');
+  if (!el) return;
 
-// ==================== Project Card Hover Effect ====================
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mouseenter', function() {
-    this.style.transform = 'translateY(-10px) scale(1.02)';
-  });
-  
-  card.addEventListener('mouseleave', function() {
-    this.style.transform = 'translateY(0) scale(1)';
-  });
-});
+  const roles = [
+    'QA Engineer',
+    'Test Automation Specialist',
+    'SDET Professional',
+    'Mobile Testing Expert',
+    'CI/CD Architect'
+  ];
 
-// ==================== Skill Tag Hover Effect ====================
-document.querySelectorAll('.skill-tag').forEach(tag => {
-  tag.addEventListener('mouseenter', function() {
-    this.style.transform = 'scale(1.1) translateY(-2px)';
-  });
-  
-  tag.addEventListener('mouseleave', function() {
-    this.style.transform = 'scale(1) translateY(0)';
-  });
-});
+  let roleIdx = 0, charIdx = 0, deleting = false, paused = false;
 
-// ==================== Parallax Effect for Hero Section ====================
-// Parallax transform was causing the hero section to overlap subsequent
-// content when the user scrolled. Removing the transformation keeps the
-// layout flow intact and prevents text from stacking on top of each other.
-// (If a parallax effect is still desired, it should be applied to a
-// background element with its own z-index, not the entire .hero container.)
+  function tick() {
+    const current = roles[roleIdx];
 
-// window.addEventListener('scroll', () => {
-//   const scrolled = window.pageYOffset;
-//   const hero = document.querySelector('.hero');
-//   if (hero) {
-//     hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-//   }
-//});
-
-// ==================== Loading Animation ====================
-window.addEventListener('load', () => {
-  document.body.classList.add('loaded');
-});
-
-// ==================== Intersection Observer for Timeline ====================
-const timelineObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animate');
-      timelineObserver.unobserve(entry.target);
+    if (paused) {
+      paused = false;
+      setTimeout(tick, 1400);
+      return;
     }
-  });
-}, { threshold: 0.3 });
 
-document.querySelectorAll('.timeline-item').forEach(item => {
-  timelineObserver.observe(item);
+    if (!deleting) {
+      if (charIdx < current.length) {
+        el.textContent = current.slice(0, ++charIdx);
+        setTimeout(tick, 70 + Math.random() * 40);
+      } else {
+        paused = true;
+        setTimeout(tick, 100);
+      }
+    } else {
+      if (charIdx > 0) {
+        el.textContent = current.slice(0, --charIdx);
+        setTimeout(tick, 38);
+      } else {
+        deleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+        setTimeout(tick, 300);
+      }
+    }
+
+    if (!deleting && el.textContent === current) {
+      deleting = true;
+    }
+  }
+
+  setTimeout(tick, 800);
+})();
+
+// ─── Counter Animation ─────────────────────────────────────
+(function initCounters() {
+  const counters = document.querySelectorAll('.stat-number');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el     = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const dur    = 2000;
+      const step   = target / (dur / 16);
+      let val = 0;
+
+      function update() {
+        val += step;
+        if (val < target) {
+          el.textContent = Math.floor(val);
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target;
+        }
+      }
+      update();
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => observer.observe(c));
+})();
+
+// ─── Skill Progress Bars ───────────────────────────────────
+(function initSkillBars() {
+  const fills = document.querySelectorAll('.sbi-fill');
+  if (!fills.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const w  = el.dataset.width;
+      requestAnimationFrame(() => { el.style.width = w + '%'; });
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+
+  fills.forEach(f => { f.style.width = '0'; observer.observe(f); });
+})();
+
+// ─── Scroll Reveal ─────────────────────────────────────────
+(function initReveal() {
+  const els = document.querySelectorAll('[data-reveal]');
+  if (!els.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  els.forEach(el => observer.observe(el));
+})();
+
+// ─── Navbar: active link + scroll hide ────────────────────
+(function initNavbar() {
+  const navbar  = document.getElementById('navbar');
+  const links   = document.querySelectorAll('.nav-menu li a');
+  const sections = document.querySelectorAll('section[id]');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const cur = window.pageYOffset;
+
+    // Hide / show on scroll direction
+    if (cur > 80) {
+      if (cur > lastScroll + 5) {
+        navbar.classList.add('scroll-down');
+        navbar.classList.remove('scroll-up');
+      } else if (cur < lastScroll - 5) {
+        navbar.classList.remove('scroll-down');
+        navbar.classList.add('scroll-up');
+      }
+    } else {
+      navbar.classList.remove('scroll-down', 'scroll-up');
+    }
+    lastScroll = cur;
+
+    // Active section highlighting
+    const scrollPos = cur + 150;
+    sections.forEach(sec => {
+      if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+        links.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + sec.id);
+        });
+      }
+    });
+  });
+})();
+
+// ─── Mobile Menu ───────────────────────────────────────────
+(function initMobileMenu() {
+  const toggle = document.getElementById('navToggle');
+  const menu   = document.getElementById('navMenu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    toggle.classList.toggle('active');
+  });
+
+  // Close on link click
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('active');
+      toggle.classList.remove('active');
+    });
+  });
+})();
+
+// ─── Smooth Scroll (nav links) ─────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    const navH = document.querySelector('nav')?.offsetHeight || 72;
+    window.scrollTo({ top: target.offsetTop - navH, behavior: 'smooth' });
+  });
 });
 
-// ==================== Form Validation (if contact form added later) ====================
-function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
-}
+// ─── Scroll-to-Top Button ──────────────────────────────────
+(function initScrollTop() {
+  const btn = document.getElementById('scrollTop');
+  if (!btn) return;
 
-// ==================== Console Message ====================
-console.log('%c👋 Welcome to Tushar Sharma\'s Portfolio!', 'color:rgba(103, 94, 145, 0.1); font-size: 20px; font-weight: bold;');
-console.log('%cInterested in working together? Reach out at tushar07988@gmail.com', 'color:rgb(191, 250, 96); font-size: 14px;');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.pageYOffset > 400);
+  });
 
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+// ─── Project card tilt effect ──────────────────────────────
+(function initTilt() {
+  const cards = document.querySelectorAll('.project-card, .skill-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r  = card.getBoundingClientRect();
+      const x  = (e.clientX - r.left) / r.width  - 0.5;
+      const y  = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `translateY(-8px) rotateX(${-y * 4}deg) rotateY(${x * 5}deg) scale(1.01)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
+
+// ─── Console Easter Egg ────────────────────────────────────
+console.log('%c  TUSHAR SHARMA — SDET & QA ENGINEER  ', 'background:#00e5ff;color:#03070f;font-size:14px;font-weight:bold;padding:8px 16px;border-radius:4px;');
+console.log('%c> Available for new opportunities. Reach out: tushar07988@gmail.com', 'color:#7dd3fc;font-size:12px;');
+console.log('%c> GitHub: https://github.com/TUSHAR7988', 'color:#a78bfa;font-size:12px;');
