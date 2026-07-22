@@ -90,8 +90,8 @@ window.addEventListener('load', () => {
       this.r  = Math.random() * 1.8 + 0.4;
       this.alpha = Math.random() * 0.45 + 0.1;
       this.pulse = Math.random() * Math.PI * 2;
-      // Randomly assign colour: cyan or purple
-      this.cyan = Math.random() > 0.35;
+      // Randomly assign warm luxury highlight tones
+      this.warm = Math.random() > 0.35;
     }
 
     update() {
@@ -118,9 +118,9 @@ window.addEventListener('load', () => {
 
     draw() {
       const a = this.alpha * (0.7 + 0.3 * Math.sin(this.pulse));
-      const color = this.cyan
-        ? `rgba(0, 229, 255, ${a})`
-        : `rgba(124, 58, 237, ${a * 0.7})`;
+      const color = this.warm
+        ? `rgba(201, 154, 99, ${a})`
+        : `rgba(255, 245, 228, ${a * 0.65})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
       ctx.fillStyle = color;
@@ -142,7 +142,7 @@ window.addEventListener('load', () => {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(0, 229, 255, ${a})`;
+          ctx.strokeStyle = `rgba(201, 154, 99, ${a})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }
@@ -166,11 +166,11 @@ window.addEventListener('load', () => {
   if (!el) return;
 
   const roles = [
-    'QA Engineer',
-    'Test Automation Specialist',
-    'SDET Professional',
-    'Mobile Testing Expert',
-    'CI/CD Architect'
+    'SDET & QA Automation Engineer',
+    'Automation Framework Developer',
+    'Developer Experience & Quality Strategist',
+    'Freelance Web & QA Specialist',
+    'CI/CD Delivery Architect'
   ];
 
   let roleIdx = 0, charIdx = 0, deleting = false, paused = false;
@@ -267,14 +267,54 @@ window.addEventListener('load', () => {
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+      const delay = Number(el.dataset.delay || 0);
+
+      setTimeout(() => {
+        el.classList.add('revealed');
+      }, delay);
+
+      observer.unobserve(el);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
   els.forEach(el => observer.observe(el));
+})();
+
+// ─── Scroll Choreography ─────────────────────────────────
+(function initScrollChoreography() {
+  const heroVisual = document.querySelector('.hero-visual');
+  const heroOrb = document.querySelector('.profile-orb');
+  const animatedCards = document.querySelectorAll('.timeline-content, .skill-card, .project-card, .contact-card');
+
+  function clamp(val, min, max) {
+    return Math.max(min, Math.min(max, val));
+  }
+
+  function update() {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    if (heroOrb) {
+      const shift = clamp(scrollY * 0.03, -14, 14);
+      heroOrb.style.setProperty('--hero-shift', `${shift}px`);
+    }
+
+    if (heroVisual) {
+      const shift = clamp(scrollY * 0.015, -10, 10);
+      heroVisual.style.setProperty('--hero-shift', `${shift}px`);
+    }
+
+    animatedCards.forEach((card, index) => {
+      const depth = Number(card.dataset.depth || (card.classList.contains('project-card') ? 0.05 : 0.03));
+      const shift = clamp(scrollY * depth * 0.22, -10, 10) + (index % 2 === 0 ? 2 : -2);
+      card.style.setProperty('--float-lift', `${shift}px`);
+    });
+  }
+
+  update();
+  window.addEventListener('scroll', update, { passive: true });
 })();
 
 // ─── Navbar: active link + scroll hide ────────────────────
@@ -365,7 +405,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const r  = card.getBoundingClientRect();
       const x  = (e.clientX - r.left) / r.width  - 0.5;
       const y  = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transform = `translateY(-8px) rotateX(${-y * 4}deg) rotateY(${x * 5}deg) scale(1.01)`;
+      card.style.transform = `translateY(var(--float-lift, 0px)) rotateX(${-y * 4}deg) rotateY(${x * 5}deg) scale(1.01)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
@@ -374,6 +414,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 // ─── Console Easter Egg ────────────────────────────────────
-console.log('%c  TUSHAR SHARMA — SDET & QA ENGINEER  ', 'background:#00e5ff;color:#03070f;font-size:14px;font-weight:bold;padding:8px 16px;border-radius:4px;');
-console.log('%c> Available for new opportunities. Reach out: tushar07988@gmail.com', 'color:#7dd3fc;font-size:12px;');
-console.log('%c> GitHub: https://github.com/TUSHAR7988', 'color:#a78bfa;font-size:12px;');
+console.log('%c  TUSHAR SHARMA — QA / SDET ENGINEER  ', 'background:#c99a63;color:#0a0908;font-size:14px;font-weight:bold;padding:8px 16px;border-radius:4px;');
+console.log('%c> Available for new opportunities. Reach out: tushar07988@gmail.com', 'color:#f0d7af;font-size:12px;');
+console.log('%c> GitHub: https://github.com/TUSHAR7988', 'color:#e9d4b0;font-size:12px;');
