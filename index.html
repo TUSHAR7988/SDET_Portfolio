@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hello, World.
+
+I'm Tushar Sharma
+
+SDET • Automation Engineer • AI Quality
+
+I build scalable automation frameworks, test modern web, mobile, API, and AI-driven applications, and help engineering teams deliver reliable software with confidence. From Playwright and Selenium to Appium, API testing, and CI/CD pipelines, I turn quality into a competitive advantage.">
+    <meta name="keywords" content="SDET, Developer, Freelance Web Development, Automation Framework, Test Automation, QA Engineer, Playwright, Selenium, Appium, Production Ready Portfolio">
+    <meta name="author" content="Tushar Sharma">
+    <title>Tushar Sharma | SDET • Developer • Freelance Automation</title>
+    <link rel="stylesheet" href="mypage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-hex"></div>
+      <div class="loader-text"><span class="mono">&gt; initializing_</span></div>
+    </div>
+  </div>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- 3D Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="menu">
+      <div class="logo">
+        <a href="#home">
+          <span class="logo-bracket">{</span>
+          <span class="logo-text">TS</span>
+          <span class="logo-bracket">}</span>
+        </a>
+      </div>
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home"><span class="nav-num">01.</span>Home</a></li>
+        <li><a href="#about"><span class="nav-num">02.</span>About</a></li>
+        <li><a href="#experience"><span class="nav-num">03.</span>Experience</a></li>
+        <li><a href="#skills"><span class="nav-num">04.</span>Skills</a></li>
+        <li><a href="#projects"><span class="nav-num">05.</span>Projects</a></li>
+        <li><a href="#contact"><span class="nav-num">06.</span>Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="greeting mono">&gt; hello_world;</div>
+        <div class="title">
+          <span class="name-line">Tushar</span>
+          <span class="name-line highlight-3d" id="name-text">Sharma</span>
+        </div>
+        <div class="role-wrapper">
+          <span class="role-prefix mono">role://</span>
+          <div class="sub_title" id="typewriter"></div>
+          <span class="cursor-blink">|</span>
+        </div>
+
+        <p class="hero-description">
+            I engineer quality into every stage of the software development lifecycle through scalable automation, intelligent testing, and modern QA practices. Specializing in web, mobile, API, and AI-driven applications, I build robust automation frameworks that help teams deliver reliable, high-performance software with confidence.</p>
+        <!-- 3D Stats -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-card">
+              <div class="stat-number" data-target="85">0</div>
+              <div class="stat-label">% Regression Coverage</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-card">
+              <div class="stat-number" data-target="73">0</div>
+              <div class="stat-label">Dashboards Verified</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-card">
+              <div class="stat-number" data-target="9">0</div>
+              <div class="stat-label">Concurrent Releases</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btns">
+          <a href="#contact" class="btn btn-primary">
+            <span class="btn-text">Get In Touch</span>
+            <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+          </a>
+          <a href="#projects" class="btn btn-ghost">
+            <span class="btn-text">View My Work</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="profile-orb">
+          <div class="orb-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+          </div>
+          <div class="orb-image">
+            <img src="tushar.jpg" alt="Tushar Sharma - QA Engineer">
+          </div>
+          <!-- Floating badges -->
+          <div class="float-badge badge-1">
+            <i class="fas fa-robot"></i>
+            <span>Automation</span>
+          </div>
+          <div class="float-badge badge-2">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Appium</span>
+          </div>
+          <div class="float-badge badge-3">
+            <i class="fas fa-code-branch"></i>
+            <span>CI/CD</span>
+          </div>
+          <div class="float-badge badge-4">
+            <i class="fas fa-vial"></i>
+            <span>TestNG</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-track">
+        <div class="scroll-thumb"></div>
+      </div>
+      <span class="mono scroll-label">scroll</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="section-bg-text">ABOUT</div>
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag mono">// who_am_i</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-col" data-reveal>
+          <div class="about-img-frame">
+            <img src="tushar.jpg" alt="Tushar Sharma">
+            <div class="img-scan-line"></div>
+            <div class="img-corner tl"></div>
+            <div class="img-corner tr"></div>
+            <div class="img-corner bl"></div>
+            <div class="img-corner br"></div>
+          </div>
+          <div class="about-code-block">
+            <pre class="mono"><span class="code-key">const</span> engineer = {
+  <span class="code-str">name</span>: <span class="code-val">"Tushar Sharma"</span>,
+  <span class="code-str">role</span>: <span class="code-val">"SDET / QA Engineer"</span>,
+  <span class="code-str">location</span>: <span class="code-val">"Bengaluru 🇮🇳"</span>,
+  <span class="code-str">cgpa</span>: <span class="code-val">9.39</span>
+};</pre>
+          </div>
+        </div>
+        <div class="about-text-col" data-reveal>
+          <h5>QA Engineer <span>&amp; Test Automation Specialist</span></h5>
+          <p>I design quality-first digital experiences that combine test automation strategy, production-minded engineering, and polished web execution for clients who expect clarity, speed, and measurable confidence.</p>
+          <p>From foundational QA setup to automation framework development and high-impact website delivery, I help SDET teams, founders, and freelance clients build reliable systems that look sharp and perform under pressure.</p>
+          <p>My work blends engineering discipline, creative storytelling, and execution precision so each page feels cinematic, responsive, and ready for real-world delivery.</p>
+
+          <div class="about-details">
+            <div class="detail-item">
+              <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <span>Hamirpur, Himachal Pradesh, India</span>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon"><i class="fas fa-graduation-cap"></i></div>
+              <span>B.E. Computer Science — Chitkara University (CGPA: 9.39)</span>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon"><i class="fas fa-briefcase"></i></div>
+              <span>SDET Engineer at Lazulite Technology Services LLC, Dubai</span>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary">Let's Connect <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="experience" id="experience">
+    <div class="section-bg-text">EXP</div>
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag mono">// work_history</span>
+        <h2 class="section-title">Professional Experience</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-track"></div>
+
+        <div class="timeline-item" data-reveal>
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-pulse"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="tc-header">
+              <div class="tc-left">
+                <h3>QA / SDET Engineer</h3>
+                <span class="tc-company">Lazulite Technology Services LLC</span>
+              </div>
+              <div class="tc-right">
+                <span class="tc-date mono">May 2026 — Present</span>
+                <span class="tc-location"><i class="fas fa-location-dot"></i> Dubai, UAE · Remote</span>
+              </div>
+            </div>
+            <ul class="tc-bullets">
+              <li>Authored the company’s foundational QA Test Plan v1.0 from scratch for a multi-tenant CRM + AI-copilot SaaS platform.</li>
+              <li>Established the end-to-end QA process with requirement review, smoke/functional/regression gating, Jira bug reporting, and SLA-based defect ownership.</li>
+              <li>Defined the automation roadmap using Playwright for E2E, Vitest/Supertest for API validation, pytest for Python Lumen AI agent testing, and PostgreSQL verification.</li>
+              <li>Designed LLM-specific validation patterns for non-deterministic AI output, including contract/schema testing, guardrails, and fallback logic checks.</li>
+              <li>Authored manual test scenarios across nine concurrent feature releases spanning Products & Services, proposal builder, Arabic/English localization, BullMQ bulk email marketing, and inactivity reminders.</li>
+            </ul>
+            <div class="tc-tags">
+              <span>Playwright</span><span>Vitest</span><span>Supertest</span><span>pytest</span><span>PostgreSQL</span><span>Jira</span><span>QA Strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal>
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-pulse"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="tc-header">
+              <div class="tc-left">
+                <h3>Quality Assurance Engineer</h3>
+                <span class="tc-company">Superfone</span>
+              </div>
+              <div class="tc-right">
+                <span class="tc-date mono">Aug 2024 — May 2026</span>
+                <span class="tc-location"><i class="fas fa-location-dot"></i> Bengaluru, India</span>
+              </div>
+            </div>
+            <ul class="tc-bullets">
+              <li>Owned end-to-end quality engineering for AI Business Phone Dialer and CRM covering telephony, CRM, AI call automation, and Android flows.</li>
+              <li>Built and maintained Appium automation suites in Java + Selenium + TestNG that reached ~85% regression coverage for dialer, call handling, and WABA template review flows.</li>
+              <li>Validated SIP call flows, FCM notifications, AI receptionist behavior, transfer/fallback logic, and status transitions across real production scenarios.</li>
+              <li>Performed backend and API validation with Charles Proxy and Firebase, verifying call events, CRM payloads, and AI conversation logs for schema correctness.</li>
+              <li>Collaborated closely with product, backend, and AI teams during sprint planning, grooming, and defect triage.</li>
+            </ul>
+            <div class="tc-tags">
+              <span>Java</span><span>Appium</span><span>TestNG</span><span>Selenium</span><span>Firebase</span><span>Charles Proxy</span><span>ADB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <div class="section-bg-text">SKILLS</div>
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag mono">// tech_stack</span>
+        <h2 class="section-title">Technical Skills</h2>
+      </div>
+
+      <!-- Skill Bars -->
+      <div class="skill-bars-section" data-reveal>
+        <h3 class="skill-group-title"><i class="fas fa-code"></i> Core Strengths</h3>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="sbi-header">
+              <span class="sbi-name">Java & Test Automation</span>
+              <span class="sbi-pct">90%</span>
+            </div>
+            <div class="sbi-track">
+              <div class="sbi-fill" data-width="90"><div class="sbi-glow"></div></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="sbi-header">
+              <span class="sbi-name">AI / LLM Quality Validation</span>
+              <span class="sbi-pct">85%</span>
+            </div>
+            <div class="sbi-track">
+              <div class="sbi-fill" data-width="85"><div class="sbi-glow"></div></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="sbi-header">
+              <span class="sbi-name">API & Backend Verification</span>
+              <span class="sbi-pct">82%</span>
+            </div>
+            <div class="sbi-track">
+              <div class="sbi-fill" data-width="82"><div class="sbi-glow"></div></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="sbi-header">
+              <span class="sbi-name">QA Strategy & CI/CD</span>
+              <span class="sbi-pct">88%</span>
+            </div>
+            <div class="sbi-track">
+              <div class="sbi-fill" data-width="88"><div class="sbi-glow"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill Cards Grid -->
+      <div class="skills-grid">
+        <div class="skill-card" data-reveal data-delay="0">
+          <div class="sc-icon"><i class="fas fa-vial"></i></div>
+          <h3>Automation Frameworks</h3>
+          <div class="sc-tags">
+            <span>Selenium WebDriver</span><span>Appium</span><span>Playwright</span><span>TestNG</span><span>JUnit</span><span>Maven</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal data-delay="100">
+          <div class="sc-icon"><i class="fas fa-plug"></i></div>
+          <h3>API & Backend Testing</h3>
+          <div class="sc-tags">
+            <span>Postman</span><span>REST Assured</span><span>Supertest</span><span>pytest</span><span>JMeter</span><span>PostgreSQL</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal data-delay="200">
+          <div class="sc-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Mobile & Voice QA</h3>
+          <div class="sc-tags">
+            <span>Android Studio</span><span>ADB</span><span>Logcat</span><span>Firebase</span><span>SIP</span><span>FCM</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal data-delay="300">
+          <div class="sc-icon"><i class="fas fa-robot"></i></div>
+          <h3>AI / LLM Testing</h3>
+          <div class="sc-tags">
+            <span>Intent Validation</span><span>Fallback Logic</span><span>Guardrails</span><span>Schema Testing</span><span>LangChain</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal data-delay="400">
+          <div class="sc-icon"><i class="fas fa-infinity"></i></div>
+          <h3>DevOps & Delivery</h3>
+          <div class="sc-tags">
+            <span>Jenkins</span><span>Git</span><span>GitHub Actions</span><span>CI/CD</span><span>Chrome DevTools</span><span>Jira</span>
+          </div>
+        </div>
+        <div class="skill-card" data-reveal data-delay="500">
+          <div class="sc-icon"><i class="fas fa-sitemap"></i></div>
+          <h3>Quality Practices</h3>
+          <div class="sc-tags">
+            <span>Agile/Scrum</span><span>Regression</span><span>Smoke</span><span>Functional</span><span>Cross-browser</span><span>POM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <div class="section-bg-text">WORK</div>
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag mono">// key_projects</span>
+        <h2 class="section-title">Key Projects</h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card featured" data-reveal data-delay="0">
+          <div class="pc-number mono">01</div>
+          <div class="pc-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="pc-featured-tag">Featured</div>
+          <h3>CRM Test Automation Practice</h3>
+          <p class="pc-type">Self-directed · Playwright · Vitest · pytest</p>
+          <p>Built hands-on automation practice around CRM-style REST modules and UI flows while defining an automation roadmap for enterprise SaaS quality Engineering.</p>
+          <div class="pc-tags">
+            <span>Playwright</span><span>Vitest</span><span>Supertest</span><span>pytest</span><span>PostgreSQL</span>
+          </div>
+          <div class="pc-glow"></div>
+        </div>
+
+        <div class="project-card" data-reveal data-delay="100">
+          <div class="pc-number mono">02</div>
+          <div class="pc-icon"><i class="fas fa-futbol"></i></div>
+          <h3>SofaScore Finished Match Monitoring</h3>
+          <p class="pc-type">Async Automation · Playwright</p>
+          <p>Designed an asynchronous monitoring system that detects football match completion in near real-time using event polling, semaphores, and fault-tolerant browser lifecycle management.</p>
+          <div class="pc-tags">
+            <span>Playwright</span><span>Python</span><span>Async</span><span>Concurrency</span><span>JSON</span>
+          </div>
+          <div class="pc-glow"></div>
+        </div>
+
+        <div class="project-card" data-reveal data-delay="200">
+          <div class="pc-number mono">03</div>
+          <div class="pc-icon"><i class="fas fa-globe"></i></div>
+          <h3>TSCINDO — Door Service Provider</h3>
+          <p class="pc-type">Freelance · Web Automation</p>
+          <p>Developed a reusable Selenium automation framework with POM structure and data-driven testing, then integrated REST Assured for basic API validation.</p>
+          <div class="pc-tags">
+            <span>Java</span><span>Selenium</span><span>TestNG</span><span>POM</span><span>REST Assured</span>
+          </div>
+          <a href="https://tscindo.com" target="_blank" class="pc-link">
+            <span>Visit Project</span> <i class="fas fa-arrow-up-right-from-square"></i>
+          </a>
+          <div class="pc-glow"></div>
+        </div>
+
+        <div class="project-card" data-reveal data-delay="300">
+          <div class="pc-number mono">04</div>
+          <div class="pc-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Superfone Android Automation</h3>
+          <p class="pc-type">AI Business Phone · Android QA</p>
+          <p>Built scalable Appium test suites for dialer and CRM flows, supporting deep-linking, call handling, and cross-surface business validations with strong regression coverage.</p>
+          <div class="pc-tags">
+            <span>Appium</span><span>Java</span><span>TestNG</span><span>Google Business Profile</span><span>Regression</span>
+          </div>
+          <div class="pc-glow"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certifications -->
+  <section class="education" id="education">
+    <div class="section-bg-text">EDU</div>
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag mono">// education &amp; certs</span>
+        <h2 class="section-title">Education & Certifications</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card" data-reveal>
+          <div class="edu-badge"><i class="fas fa-graduation-cap"></i></div>
+          <div class="edu-content">
+            <h3>B.E. in Computer Science Engineering</h3>
+            <p class="edu-inst">Chitkara University, Punjab</p>
+            <p class="edu-period mono">2020 — 2024</p>
+            <div class="edu-gpa">
+              <span class="gpa-label">CGPA</span>
+              <span class="gpa-value">9.39 / 10</span>
+            </div>
+          </div>
+        </div>
+        <div class="edu-card" data-reveal>
+          <div class="edu-badge"><i class="fas fa-certificate"></i></div>
+          <div class="edu-content">
+            <h3>Certifications</h3>
+            <ul class="cert-list">
+              <li><i class="fas fa-check-circle"></i> Introduction to Software Testing — Coursera</li>
+              <li><i class="fas fa-check-circle"></i> Black-box and White-box Testing — Coursera</li>
+              <li><i class="fas fa-check-circle"></i> Web and Mobile Testing with Selenium — Coursera</li>
+              <li><i class="fas fa-check-circle"></i> Object Oriented Programming in Java — Chitkara / Coding Ninjas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="section-bg-text">TALK</div>
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-tag mono">// get_in_touch</span>
+        <h2 class="section-title">Let's Connect</h2>
+      </div>
+      <p class="contact-sub" data-reveal>Open to senior QA / SDET opportunities, automation leadership roles, and high-impact quality engineering collaborations.</p>
+
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:tushar07988@gmail.com" data-reveal>
+          <div class="cc-icon"><i class="fas fa-envelope"></i></div>
+          <div class="cc-info">
+            <span class="cc-label">Email</span>
+            <span class="cc-val">tushar07988@gmail.com</span>
+          </div>
+          <i class="fas fa-arrow-right cc-arrow"></i>
+        </a>
+        <a class="contact-card" href="tel:+918219463907" data-reveal>
+          <div class="cc-icon"><i class="fas fa-phone"></i></div>
+          <div class="cc-info">
+            <span class="cc-label">Phone</span>
+            <span class="cc-val">+91 8219463907</span>
+          </div>
+          <i class="fas fa-arrow-right cc-arrow"></i>
+        </a>
+        <a class="contact-card" href="https://linkedin.com/in/tushar-sharma-b31959225" target="_blank" data-reveal>
+          <div class="cc-icon"><i class="fab fa-linkedin"></i></div>
+          <div class="cc-info">
+            <span class="cc-label">LinkedIn</span>
+            <span class="cc-val">linkedin.com/in/tushar-sharma-b31959225</span>
+          </div>
+          <i class="fas fa-arrow-right cc-arrow"></i>
+        </a>
+        <a class="contact-card" href="https://github.com/TUSHAR7988" target="_blank" data-reveal>
+          <div class="cc-icon"><i class="fab fa-github"></i></div>
+          <div class="cc-info">
+            <span class="cc-label">GitHub</span>
+            <span class="cc-val">@TUSHAR7988</span>
+          </div>
+          <i class="fas fa-arrow-right cc-arrow"></i>
+        </a>
+        <div class="contact-card no-link" data-reveal>
+          <div class="cc-icon"><i class="fas fa-location-dot"></i></div>
+          <div class="cc-info">
+            <span class="cc-label">Location</span>
+            <span class="cc-val">Bengaluru, India · Remote-friendly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-ctas" data-reveal>
+        <a href="mailto:tushar07988@gmail.com" class="btn btn-primary">
+          <i class="fas fa-paper-plane"></i>
+          <span class="btn-text">Send Email</span>
+        </a>
+        <a href="Tushar_Resume.pdf" class="btn btn-ghost" download>
+          <i class="fas fa-download"></i>
+          <span class="btn-text">Download Resume</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="mono">&copy; 2026 Tushar Sharma <span class="footer-sep">—</span> bahut mehnat ke baad </p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/tushar-sharma-b31959225" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/TUSHAR7988" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:tushar07988@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
